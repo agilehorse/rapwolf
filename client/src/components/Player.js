@@ -9,7 +9,7 @@ import Paper from "@material-ui/core/Paper";
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from '@material-ui/lab/Alert';
 
-export default function Spotify() {
+export default function Player() {
 
     const classes = useStyles();
     const url = new URL(window.location.href.replace(/#/g, "?"));
@@ -22,17 +22,15 @@ export default function Spotify() {
     });
 
     useEffect(() => {
-        if (url.searchParams.get('error') === "access_denied"){
+        if (url.searchParams.get('error') === "access_denied") {
             getDefaultSong();
             return;
         }
 
         const storageToken = localStorage.getItem('access_token');
         const urlToken = url.searchParams.get('access_token');
-        if (!songData.name)
-        {
-            if (storageToken && Date.now() < new Date(Number(localStorage.getItem('expires_in'))))
-            {
+        if (!songData.name) {
+            if (storageToken && Date.now() < new Date(Number(localStorage.getItem('expires_in')))) {
                 getSong(storageToken).then(() => setLoading(false));
             } else if (urlToken) {
                 localStorage.setItem('access_token', urlToken);
@@ -133,7 +131,7 @@ export default function Spotify() {
                     </Paper>
                     :
                     <Paper className={classes.paper}>
-                        <img src={SpotifyLogo} alt="spotify"/>
+                        <img src={SpotifyLogo} alt="spotify" className={classes.spotifyLogo}/>
                         <Button color="secondary" variant="contained" className={classes.button}
                                 onClick={() => connectWithSpotify()}>
                             Connect with spotify
@@ -161,6 +159,9 @@ const useStyles = makeStyles((theme) => ({
         width: '70%',
         height: '90%',
         marginTop: '1em',
+        [theme.breakpoints.down('xs')]: {
+            width: '90%',
+        }
     },
     loading: {
         display: 'flex',
@@ -218,11 +219,15 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#282c34',
         [theme.breakpoints.down('md')]: {
             width: '85%',
-        }
+        },
+        [theme.breakpoints.down('xs')]: {
+            padding: '1em',
+        },
     },
     spotifyLogo: {
-        width: '100%',
-        height: 'auto'
+        [theme.breakpoints.down('xs')]: {
+            width: '75%',
+        },
     },
     button: {
         marginTop: '1em',

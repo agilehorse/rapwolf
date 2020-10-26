@@ -3,7 +3,7 @@ import WhiteWolf from "../resources/whiteWolf.png";
 import BlackWolf from "../resources/blackWolf.png";
 import {Typography} from "@material-ui/core";
 import {Redirect, Route, useHistory} from "react-router-dom";
-import Player from "./Spotify";
+import Player from "./Player";
 import KanyeRest from "./KanyeRest";
 import React, {useState} from "react";
 import {makeStyles} from "@material-ui/core/styles";
@@ -73,7 +73,7 @@ export default function Main() {
             <Route default path="/kanye">
                 <KanyeRest/>
             </Route>
-            <Redirect to="/text"/>
+            <Redirect to="/player"/>
         </div>
     )
 }

@@ -17,7 +17,8 @@ export default function Info() {
                 University in
                 Prague.
             </Typography>
-            <Typography className={classes.description}>
+            <br/>
+            <Typography className={classes.description2}>
                 The application uses three different apis.<br/> First one is made by me, which provides data about slovak
                 rap artists. It's available in the top menu under "api". <br/>Second one
                 is <Link href="https://developer.spotify.com/documentation/web-api" className={classes.link}>
@@ -27,7 +28,7 @@ export default function Info() {
                 :) If you cancel connecting with your account, or if you press button "I do not have an account", you'll
                 get a default song <b>Hawaii</b>.<br/>
                 The last one uses <Link href="https://kanye.rest" className={classes.link}>Kanye.Rest</Link>. Accessible
-                at "kanye", it obtains some quote of Kanye West.
+                at "kanye", it obtains some quote of Kanye West, some of which are also explicit :).
             </Typography>
         </Paper>
     )
@@ -40,16 +41,14 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         padding: '1%',
         marginTop: '1em',
-        width: '58%',
         webkitBoxShadow: '10px 10px 10px 5px rgba(255,255,255,1)',
         mozBoxShadow: '10px 10px 10px 5px rgba(255,255,255,1)',
         boxShadow: '10px 10px 10px 5px rgba(255,255,255,1)',
         backgroundColor: '#282c34',
-        [theme.breakpoints.down('md')]: {
-            width: '85%',
-        },
-        [theme.breakpoints.up('sm')]: {
-            height: '70%',
+        width: '85%',
+        [theme.breakpoints.up('md')]: {
+            minHeight: '70%',
+            width: '58%',
         },
         [theme.breakpoints.down('xs')]: {
             textAlign: 'center',
@@ -61,6 +60,8 @@ const useStyles = makeStyles((theme) => ({
         fontSize: 72,
         [theme.breakpoints.down('xs')]: {
             fontSize: 56,
+            marginLeft: '1em',
+            marginRight: '1em',
         },
         color: theme.palette.secondary.main,
     },
@@ -68,7 +69,20 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '2em',
         marginLeft: '2.3em',
         marginRight: '2.3em',
-        marginBottom: '1em',
+        [theme.breakpoints.down('xs')]: {
+            marginLeft: '1em',
+            marginRight: '1em',
+        },
+        fontFamily: "\"Roboto\", sans-serif",
+    },
+    description2 :{
+        marginLeft: '2.3em',
+        marginRight: '2.3em',
+        marginBottom: '1.5em',
+        [theme.breakpoints.down('xs')]: {
+            marginLeft: '1em',
+            marginRight: '1em',
+        },
     },
     link: {
         color: theme.palette.secondary.main,
