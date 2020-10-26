@@ -6,12 +6,15 @@ import SpotifyLogo from '../resources/spotify.png'
 import CircularProgress from '@material-ui/core/CircularProgress';
 import AudioPlayer from "material-ui-audio-player";
 import Paper from "@material-ui/core/Paper";
+import Snackbar from "@material-ui/core/Snackbar";
+import Alert from '@material-ui/lab/Alert';
 
 export default function Spotify() {
 
     const classes = useStyles();
     const url = new URL(window.location.href.replace(/#/g, "?"));
     const [loading, setLoading] = useState(true);
+    const [errorOpen, setErrorOpen] = useState(false);
     const [songData, setSongData] = useState({
         name: "",
         imageUrl: "",
@@ -19,6 +22,11 @@ export default function Spotify() {
     });
 
     useEffect(() => {
+        if (url.searchParams.get('error') === "access_denied"){
+            getDefaultSong();
+            return;
+        }
+
         const storageToken = localStorage.getItem('access_token');
         const urlToken = url.searchParams.get('access_token');
         if (!songData.name)
@@ -70,8 +78,26 @@ export default function Spotify() {
         const params = url.searchParams;
         params.append('client_id', '3e1d698af830411786a9ef36050e8bf5');
         params.append('response_type', 'token');
-        params.append('redirect_uri', 'http://rapwolf.herokuapp.com/spotify');
+        params.append('redirect_uri', 'http://rapwolf.herokuapp.com/player');
         window.open(url.href, '_self');
+    }
+
+    function getDefaultSong() {
+        setSongData({
+            name: "HAWAII",
+            imageUrl: "https://i.scdn.co/image/ab67616d0000b273faf41e022d68f2898916b264",
+            mp3Url: "https://p.scdn.co/mp3-preview/f6f35a6f672ec326f4f2a913fa08b8633c4d6da0?cid=774b29d4f13844c495f206cafdad9c86"
+        })
+        setErrorOpen(true);
+        setLoading(false);
+    }
+
+    function handleClose(event, reason) {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setErrorOpen(false);
     }
 
     return (
@@ -90,7 +116,9 @@ export default function Spotify() {
                     <Paper className={classes.songPaper}>
                         <img src={songData.imageUrl} alt="album" className={classes.songImage}/>
                         <div className={classes.player}>
-                            <Typography className={classes.songName} variant="subtitle1">{songData.name}</Typography>
+                            <Typography className={classes.songName} variant="subtitle1">
+                                Pil C - {songData.name} - Preview
+                            </Typography>
                             <AudioPlayer
                                 elevation={0}
                                 width="100%"
@@ -110,8 +138,17 @@ export default function Spotify() {
                                 onClick={() => connectWithSpotify()}>
                             Connect with spotify
                         </Button>
+                        <Button color="secondary" variant="contained" className={classes.button}
+                                onClick={() => getDefaultSong()}>
+                            I do not have an account
+                        </Button>
                     </Paper>
             }
+            <Snackbar open={errorOpen} autoHideDuration={6000} onClose={handleClose}>
+                <Alert elevation={6} variant="filled" onClose={handleClose} severity="info">
+                    You denied access to spotify, therefore default song is displayed.
+                </Alert>
+            </Snackbar>
         </div>
     )
 }
@@ -174,7 +211,7 @@ const useStyles = makeStyles((theme) => ({
         padding: '1%',
         marginTop: '1em',
         height: '80%',
-        width: '80%',
+        width: '65%',
         webkitBoxShadow: '10px 10px 10px 5px rgba(255,255,255,1)',
         mozBoxShadow: '10px 10px 10px 5px rgba(255,255,255,1)',
         boxShadow: '10px 10px 10px 5px rgba(255,255,255,1)',
