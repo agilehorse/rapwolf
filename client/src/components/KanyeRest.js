@@ -37,7 +37,8 @@ const useStyles = makeStyles((theme) => ({
         padding: '1%',
         alignContent: 'center',
         marginTop: '1em',
-        height: '70%',
+        flexGrow: 1,
+        marginBottom: '2em',
         width: '70%',
         webkitBoxShadow: '10px 10px 10px 5px rgba(255,255,255,1)',
         mozBoxShadow: '10px 10px 10px 5px rgba(255,255,255,1)',
@@ -45,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#282c34',
         [theme.breakpoints.down('md')]: {
             width: '85%',
-        }
+        },
     },
     content: {
         backgroundImage: `url(${kanye})`,
@@ -63,6 +64,10 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '4em',
         marginLeft: '2em',
         marginRight: '2em',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        [theme.breakpoints.down('xs')]: {
+            marginTop: '1em',
+            textAlign: 'center',
+        }
     },
 }));

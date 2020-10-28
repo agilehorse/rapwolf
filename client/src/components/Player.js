@@ -24,6 +24,7 @@ export default function Player() {
     useEffect(() => {
         if (url.searchParams.get('error') === "access_denied") {
             getDefaultSong();
+            setErrorOpen(true);
             return;
         }
 
@@ -86,7 +87,6 @@ export default function Player() {
             imageUrl: "https://i.scdn.co/image/ab67616d0000b273faf41e022d68f2898916b264",
             mp3Url: "https://p.scdn.co/mp3-preview/f6f35a6f672ec326f4f2a913fa08b8633c4d6da0?cid=774b29d4f13844c495f206cafdad9c86"
         })
-        setErrorOpen(true);
         setLoading(false);
     }
 
@@ -156,12 +156,8 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        width: '70%',
-        height: '90%',
-        marginTop: '1em',
-        [theme.breakpoints.down('xs')]: {
-            width: '90%',
-        }
+        flexGrow: 1,
+        width: '100%'
     },
     loading: {
         display: 'flex',
@@ -170,8 +166,9 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
     },
     songPaper: {
-        height: '68vh',
-        width: '68vh',
+        marginTop: '1em',
+        height: '72vh',
+        width: '72vh',
         backgroundColor: theme.palette.secondary.main,
         webkitBoxShadow: '5px 5px 10px 3px rgba(255,255,255,1)',
         mozBoxShadow: '5px 5px 10px 3px rgba(255,255,255,1)',
@@ -211,23 +208,21 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         padding: '1%',
         marginTop: '1em',
-        height: '80%',
-        width: '65%',
+        flexGrow: 1,
+        marginBottom: '3em',
+        width: '50%',
         webkitBoxShadow: '10px 10px 10px 5px rgba(255,255,255,1)',
         mozBoxShadow: '10px 10px 10px 5px rgba(255,255,255,1)',
         boxShadow: '10px 10px 10px 5px rgba(255,255,255,1)',
         backgroundColor: '#282c34',
         [theme.breakpoints.down('md')]: {
-            width: '85%',
-        },
-        [theme.breakpoints.down('xs')]: {
             padding: '1em',
+            width: '80%'
         },
     },
     spotifyLogo: {
-        [theme.breakpoints.down('xs')]: {
-            width: '75%',
-        },
+        maxWidth: 350,
+        width: '100%',
     },
     button: {
         marginTop: '1em',
