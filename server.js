@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const db = require("./models");
+const db = require("./app/models");
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -21,6 +21,6 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-require("./routes/routes")(app);
+require("./app/routes/routes")(app);
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
