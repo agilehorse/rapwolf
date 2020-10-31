@@ -73,7 +73,7 @@ export default function Main() {
             <Route default path="/kanye">
                 <KanyeRest/>
             </Route>
-            <Redirect to="/player"/>
+            <Redirect to="/info"/>
         </div>
     )
 }
