@@ -6,7 +6,7 @@ exports.create = (req, res) => {
     // Validate request
     if (!req.body.name) {
         res.status(400).send({
-            message: "Content can not be empty!"
+            message: "Request body can not be empty!"
         });
         return;
     }
@@ -19,10 +19,10 @@ exports.create = (req, res) => {
     };
 
     // Save Artist in the database
-    Artist.create(artist).then(data => {
-        res.send(data);
+    Artist.create(artist).then(() => {
+        res.status(201).send();
     }).catch(err => {
-        res.status(500).send({
+        res.status(400).send({
             message:
                 err.message || "Some error occurred while creating the Artist."
         });
@@ -35,7 +35,7 @@ exports.findAll = (req, res) => {
     Artist.findAll().then(data => {
         res.send(data);
     }).catch(err => {
-        res.status(500).send({
+        res.status(400).send({
             message:
                 err.message || "Some error occurred while retrieving artists."
         });
@@ -49,7 +49,7 @@ exports.findOne = (req, res) => {
     Artist.findByPk(name).then(data => {
         res.send(data);
     }).catch(() => {
-        res.status(500).send({
+        res.status(400).send({
             message: "Error retrieving Artist with name=" + name
         });
     });
@@ -63,16 +63,14 @@ exports.update = (req, res) => {
         where: {name: name}
     }).then(num => {
         if (num[0] === 1) {
-            res.send({
-                message: "Artist was updated successfully."
-            });
+            res.status(200).send();
         } else {
-            res.send({
-                message: `Cannot update Artist with name=${name}. Maybe Artist was not found or req.body is empty!`
+            res.status(400).send({
+                message: `Cannot update Artist with name=${name}. Maybe Artist was not found or request body is empty!`
             });
         }
     }).catch(() => {
-        res.status(500).send({
+        res.status(400).send({
             message: "Error updating Artist with name=" + name
         });
     });
@@ -86,16 +84,14 @@ exports.delete = (req, res) => {
         where: {name: name}
     }).then(num => {
         if (num === 1) {
-            res.send({
-                message: "Artist was deleted successfully!"
-            });
+            res.status(200).send();
         } else {
             res.send({
                 message: `Cannot delete Artist with name=${name}. Maybe Artist was not found!`
             });
         }
     }).catch(() => {
-        res.status(500).send({
+        res.status(400).send({
             message: "Could not delete Artist with name=" + name
         });
     });
