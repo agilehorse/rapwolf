@@ -1,0 +1,380 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "RAP WOLF",
+    "description": "",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "x-access-token",
+      "in": "header"
+    }
+  },
+  "host": "rapwolf.herokuapp.com",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "Artists",
+      "description": "API for artists in the app."
+    },
+    {
+      "name": "Artist",
+      "description": "API for artist in the app."
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/artists": {
+      "get": {
+        "tags": [
+          "Artists"
+        ],
+        "summary": "Gets all artists",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Artists"
+            }
+          },
+          "400": {
+            "description": "Request body not provided or some other error.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Request body can not be empty!"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Artists"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "summary": "Create new artist",
+        "parameters": [
+          {
+            "name": "artist",
+            "in": "body",
+            "description": "Artist that we want to create.",
+            "schema": {
+              "$ref": "#/definitions/Artists"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "New artist is created.",
+            "schema": {
+              "$ref": "#/definitions/Artists"
+            }
+          },
+          "400": {
+            "description": "Some error occurred.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Unauthorized!"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "No token provided!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "No token provided!"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/artists/{name}": {
+      "parameters": [
+        {
+          "name": "name",
+          "in": "path",
+          "required": true,
+          "description": "Name of the artist that we want to find.",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Artist"
+        ],
+        "summary": "Gets artist by name.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Artist"
+            }
+          },
+          "400": {
+            "description": "Some error occurred.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Request body can not be empty!"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update artist with given name.",
+        "tags": [
+          "Artists"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "artist",
+            "in": "body",
+            "description": "Artist with new values of properties.",
+            "schema": {
+              "$ref": "#/definitions/Artist"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Artist is updated.",
+            "schema": {
+              "$ref": "#/definitions/Artist"
+            }
+          },
+          "400": {
+            "description": "Some error occurred.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Cannot update Artist with name=John. Maybe Artist was not found or request body is empty!"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Unauthorized!"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "No token provided!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "No token provided!"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete artist with given name.",
+        "tags": [
+          "Artists"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "artist",
+            "in": "body",
+            "description": "Artist with new values of properties.",
+            "schema": {
+              "$ref": "#/definitions/Artist"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Artist is deleted.",
+            "schema": {
+              "$ref": "#/definitions/Artist"
+            }
+          },
+          "400": {
+            "description": "Some error occurred.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Cannot delete Artist with name=John. Maybe Artist was not found!"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Unauthorized!"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "No token provided!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "No token provided!"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/signIn": {
+      "post": {
+        "summary": "Sign in with password to obtain temporary access token.",
+        "tags": [
+          "Artists"
+        ],
+        "parameters": [
+          {
+            "name": "auth",
+            "in": "body",
+            "description": "Body with passwordHash property",
+            "schema": {
+              "required": [
+                "passwordHash"
+              ],
+              "properties": {
+                "passwordHash": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Artist is deleted.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "accessToken": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid Password.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "accessToken": {
+                  "type": "null"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Invalid Password!"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Artist": {
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "realName": {
+          "type": "string"
+        },
+        "bio": {
+          "type": "string"
+        }
+      }
+    },
+    "Artists": {
+      "type": "array",
+      "$ref": "#/definitions/Artist"
+    }
+  }
+}
