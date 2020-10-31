@@ -73,7 +73,7 @@ exports.update = (req, res) => {
     Record.update(req.body, {
         where: {id: id}
     }).then(num => {
-        if (num === 1) {
+        if (num[0] === 1) {
             res.send({
                 message: "Record was updated successfully."
             });
@@ -96,7 +96,7 @@ exports.delete = (req, res) => {
     Record.destroy({
         where: {id: id}
     }).then(num => {
-        if (num === 1) {
+        if (num[0] === 1) {
             res.send({
                 message: "Record was deleted successfully!"
             });

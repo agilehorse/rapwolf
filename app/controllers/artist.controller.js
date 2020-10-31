@@ -62,7 +62,7 @@ exports.update = (req, res) => {
     Artist.update(req.body, {
         where: {name: name}
     }).then(num => {
-        if (num === 1) {
+        if (num[0] === 1) {
             res.send({
                 message: "Artist was updated successfully."
             });
