@@ -103,7 +103,9 @@ export default function Api() {
                                 {artist.realName && <Typography className={classes.name}>{artist.realName}</Typography>}
                             </div>
                         </div>
-                        <Typography className={artist.isHover ? classes.textWhite : classes.textRed}>{artist.bio}</Typography>
+                        <Typography className={artist.isHover ? classes.textWhite : classes.textRed}>
+                            {artist.bio}
+                        </Typography>
                     </CardContent>
                 </Card>)}
         </Grid>
@@ -119,20 +121,27 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         padding: '1%',
         marginTop: '1em',
-        width: '58%',
+        width: '50%',
+        flexGrow: 1,
+        marginBottom: '3em',
         webkitBoxShadow: '10px 10px 10px 5px rgba(255,255,255,1)',
         mozBoxShadow: '10px 10px 10px 5px rgba(255,255,255,1)',
         boxShadow: '10px 10px 10px 5px rgba(255,255,255,1)',
         backgroundColor: '#282c34',
         [theme.breakpoints.down('md')]: {
-            width: '85%',
-        },
-        [theme.breakpoints.up('sm')]: {
-            height: '70%',
+            width: '65%',
+            textAlign: 'center',
         },
         [theme.breakpoints.down('xs')]: {
+            width: '90%',
             textAlign: 'center',
         }
+    },
+    loading: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     artistsRoot: {
         display: 'flex',
