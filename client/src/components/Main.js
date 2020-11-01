@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
     app: {
         display: 'flex',
         flexDirection: 'column',
-        height: '100vh',
+        minHeight: '100vh',
         alignItems: "center",
     },
     headerRow: {
