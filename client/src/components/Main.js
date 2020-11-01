@@ -64,16 +64,16 @@ export default function Main() {
             <Route path="/text">
                 <Text/>
             </Route>
-            <Route path="/info">
-                <Info/>
-            </Route>
             <Route path="/player">
                 <Player/>
             </Route>
-            <Route default path="/kanye">
+            <Route path="/kanye">
                 <KanyeRest/>
             </Route>
-            <Redirect to="/info"/>
+            <Route path="/info">
+                <Info/>
+            </Route>
+            {window.location.pathname !== '/player' && <Redirect to="/info"/>}
         </div>
     )
 }
