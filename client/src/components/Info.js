@@ -20,11 +20,9 @@ export default function Info() {
             <br/>
             <Typography className={classes.description2}>
                 The application uses three different apis.<br/> First one is made by me (top menu under "api"), which
-                provides data about slovak rap artists. It's available in the top menu under "api". It's public - more
-                info here
-                <Link href="https://developer.spotify.com/documentation/web-api" className={classes.link}>
-                    Spotify Api
-                </Link>
+                provides data about slovak rap artists. It's available in the top menu under "api". It's public, except
+                for endpoints that modify data, more info <Link href="http://rapwolf.herokuapp.com/api-docs"
+                                                                className={classes.link}>here</Link>.
                 <br/>Second one
                 is <Link href="https://developer.spotify.com/documentation/web-api" className={classes.link}>
                 Spotify Api
@@ -81,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
         },
         fontFamily: "\"Roboto\", sans-serif",
     },
-    description2 :{
+    description2: {
         marginLeft: '2.3em',
         marginRight: '2.3em',
         marginBottom: '1.5em',
