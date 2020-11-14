@@ -19,14 +19,14 @@ export default function Info() {
             </Typography>
             <br/>
             <Typography className={classes.description2}>
-                The application uses three different apis.<br/> First one is made by me (top menu under "api"), which
-                provides data about slovak rap artists. It's available in the top menu under "api". It's public, except
-                for endpoints that modify data, more info <Link href="http://rapwolf.herokuapp.com/api-docs"
-                                                                className={classes.link}>here</Link>.
+                The application uses three different apis.<br/> I created the first api, which provides data about
+                slovak rap artists. It's used in the top menu under "api". It's available publicly, except for endpoints
+                that modify data, more info <Link href="http://rapwolf.herokuapp.com/api-docs" className={classes.link}>
+                here</Link>.
                 <br/>Second one
                 is <Link href="https://developer.spotify.com/documentation/web-api" className={classes.link}>
                 Spotify Api
-            </Link> available at "player" - You can choose to connect your spotify account with this app, then you
+            </Link> used at "player" - You can choose to connect your spotify account with this app, then you
                 will get randomly chosen song from the slovak rap artist - Pil C. Just to note, some songs are explicit
                 :) If you cancel connecting with your account, or if you press button "I do not have an account", you'll
                 get a default song <b>Hawaii</b>.<br/>

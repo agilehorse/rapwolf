@@ -53,7 +53,6 @@ const useStyles = makeStyles((theme) => ({
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
-        height: '100%',
         width: '100%',
         display: 'flex',
         alignItems: 'center',
@@ -61,12 +60,12 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 'bold',
     },
     quote: {
-        marginTop: '4em',
+        marginTop: '3em',
         marginLeft: '2em',
         marginRight: '2em',
         fontWeight: 'bold',
         [theme.breakpoints.down('xs')]: {
-            marginTop: '1em',
+            marginTop: '2em',
             textAlign: 'center',
         }
     },

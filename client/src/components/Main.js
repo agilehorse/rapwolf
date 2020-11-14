@@ -2,7 +2,7 @@ import Button from "@material-ui/core/Button";
 import WhiteWolf from "../resources/whiteWolf.png";
 import BlackWolf from "../resources/blackWolf.png";
 import {Typography} from "@material-ui/core";
-import {Redirect, Route, useHistory} from "react-router-dom";
+import {Route, useHistory} from "react-router-dom";
 import Player from "./Player";
 import KanyeRest from "./KanyeRest";
 import React, {useState} from "react";
@@ -73,7 +73,6 @@ export default function Main() {
             <Route path="/info">
                 <Info/>
             </Route>
-            {window.location.pathname !== '/player' && <Redirect to="/info"/>}
         </div>
     )
 }

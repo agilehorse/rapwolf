@@ -35,15 +35,19 @@ const useStyles = makeStyles((theme) => ({
         },
         [theme.breakpoints.down('xs')]: {
             textAlign: 'center',
+            padding: 0,
         }
     },
     songImage: {
-        width: '60%',
+        [theme.breakpoints.up('md')]: {
+            width: '60%',
+            webkitBoxShadow: '7px 7px 7px 3px rgba(255,255,255,1)',
+            mozBoxShadow: '7px 7px 7px 3px rgba(255,255,255,1)',
+            boxShadow: '7px 7px 7px 3px rgba(255,255,255,1)',
+        },
         height: 'auto',
         textAlign: 'center',
         borderRadius: '4px',
-        webkitBoxShadow: '7px 7px 7px 3px rgba(255,255,255,1)',
-        mozBoxShadow: '7px 7px 7px 3px rgba(255,255,255,1)',
-        boxShadow: '7px 7px 7px 3px rgba(255,255,255,1)',
+        width: '100%',
     },
 }));
