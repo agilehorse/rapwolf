@@ -244,16 +244,6 @@
             "Bearer": []
           }
         ],
-        "parameters": [
-          {
-            "name": "artist",
-            "in": "body",
-            "description": "Artist with new values of properties.",
-            "schema": {
-              "$ref": "#/definitions/Artist"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "Artist is deleted.",

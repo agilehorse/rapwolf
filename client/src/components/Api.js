@@ -31,27 +31,28 @@ export default function Api() {
     const [artists, setArtists] = useState(null);
 
     useEffect(() => {
-        async function fetchData() {
-            try {
-                const response = await fetch("/api/artists");
-                if (response.ok) {
-                    const data = await response.json();
-                    setLoading(false);
-                    return data;
-                } else {
-                    console.log(response.statusText);
-                    setLoading(false);
-                    return null;
-                }
-            } catch (error) {
-                console.log(error);
+        fetchData().then(data => setArtists(data))
+    }, [])
+
+    async function fetchData() {
+        try {
+            const response = await fetch("/api/artists");
+            if (response.ok) {
+                const data = await response.json();
+                setLoading(false);
+                console.log(data)
+                return data;
+            } else {
+                console.error(response.statusText);
                 setLoading(false);
                 return null;
             }
+        } catch (error) {
+            console.error(error);
+            setLoading(false);
+            return null;
         }
-
-        fetchData().then(data => setArtists(data))
-    }, [])
+    }
 
     if (loading) {
         return (
@@ -87,8 +88,8 @@ export default function Api() {
 
     return (
         <Grid className={classes.artistsRoot} container spacing={0}>
-            {artists.map(artist =>
-                <Card className={classes.card} component={Grid} item xs={12} sm={8} md={4} lg={3}
+            {artists.map((artist, index) =>
+                <Card className={classes.card} component={Grid} item xs={12} sm={8} md={4} lg={3} key={index}
                       onMouseOver={() => markHover(artist, true)} onMouseOut={() => markHover(artist, false)}>
                     <CardMedia className={classes.media} image={getImage(artist)}/>
                     <CardContent className={classes.content}>

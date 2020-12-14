@@ -9,7 +9,6 @@ import React, {useState} from "react";
 import {makeStyles} from "@material-ui/core/styles";
 import Info from "./Info";
 import Api from "./Api";
-import Text from "./Text";
 
 export default function Main() {
 
@@ -30,13 +29,13 @@ export default function Main() {
                                 Api
                             </Button>
                             <Button
-                                className={window.location.pathname === '/text' ? classes.selectedButton : classes.wolfButton}
-                                onClick={() => history.push('/text')}
+                                className={window.location.pathname === '/' ? classes.selectedButton : classes.wolfButton}
+                                onClick={() => history.push('/')}
                             >
-                                Text
+                                Info
                             </Button>
                         </div>
-                        <div className={classes.logoColumn} onClick={() => history.push('/info')}
+                        <div className={classes.logoColumn}
                              onMouseOver={() => setIsLogoWhite(false)} onMouseOut={() => setIsLogoWhite(true)}>
                             <img src={isLogoWhite ? WhiteWolf : BlackWolf} className={classes.appLogo} alt="logo"/>
                             <Typography className={classes.heading}>RAP WOLF</Typography>
@@ -61,16 +60,13 @@ export default function Main() {
             <Route path="/api">
                 <Api/>
             </Route>
-            <Route path="/text">
-                <Text/>
-            </Route>
             <Route path="/player">
                 <Player/>
             </Route>
             <Route path="/kanye">
                 <KanyeRest/>
             </Route>
-            <Route path="/info">
+            <Route exact path="/">
                 <Info/>
             </Route>
         </div>
@@ -128,7 +124,6 @@ const useStyles = makeStyles((theme) => ({
         width: "5vw",
         minWidth: 75,
         backgroundColor: theme.palette.primary.main,
-        cursor: 'pointer',
         '&:hover' : {
             border: '3.5px solid #282c34',
             backgroundColor: 'white',

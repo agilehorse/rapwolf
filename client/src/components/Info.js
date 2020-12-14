@@ -22,7 +22,7 @@ export default function Info() {
                 The application uses three different apis.<br/> I created the first api, which provides data about
                 slovak rap artists. It's used in the top menu under "api". It's available publicly, except for endpoints
                 that modify data, more info <Link href="http://rapwolf.herokuapp.com/api-docs" className={classes.link}>
-                here</Link>.
+                here in Swagger documentation</Link>.
                 <br/>Second one
                 is <Link href="https://developer.spotify.com/documentation/web-api" className={classes.link}>
                 Spotify Api
